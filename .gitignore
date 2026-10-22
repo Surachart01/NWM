@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/direction-options.json
+*.log
+
+out/
