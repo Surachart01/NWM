@@ -32,3 +32,5 @@ npm start
 โปรเจ็กต์ใช้ Next.js แบบ static export และสร้างเว็บใน `out` โดย `vercel.json` กำหนด Framework เป็น Other, Build Command เป็น `npm run build` และ Output Directory เป็น `out` เพื่อแทนการตั้งค่า Vite เดิมที่ใช้ `dist`
 
 ตั้ง Root Directory ของ Vercel ให้ตรงกับโฟลเดอร์ `nwm-slides` ที่มี `package.json` และ `vercel.json` จากนั้น deploy source ล่าสุดอีกครั้ง ไม่ต้องอัปโหลดโฟลเดอร์ `out` หรืออาศัยลิงก์ `dist` ในเครื่อง
+
+ห้ามเก็บ symlink `dist -> out` ใน Git เพราะเมื่อ checkout ใหม่ยังไม่มี `out` ทำให้ `next build` ล้มเหลวด้วย ENOENT ระหว่างอ่าน `dist` ก่อนเริ่มสร้างเว็บ การทดสอบ deploy ต้องเริ่มจากโฟลเดอร์ที่ไม่มี `.next` และ `out` เดิม
