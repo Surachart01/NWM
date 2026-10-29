@@ -151,3 +151,11 @@ All interactive elements use a 3px rust focus outline with 4px offset. Preserve 
 - Don't replace full explanations with decorative summaries.
 - Don't remove the simulation label from command output.
 - Don't add elevated card stacks to the flat paper system.
+
+
+## IPv4 teaching surfaces
+The IP Address tab extends the existing navigation with 14 lesson entries. Forest-filled bits identify Network and warm tan bits identify Host; explicit 1/0 text and labels accompany the colors. Binary weights, AND rows, octet boundaries, proportional allocation strips and capacity bars are code-rendered exact diagrams. Teacher-paced steps have play, pause, previous, next and reset controls. Text, combined and demonstration-only views retain the same paper/forest/lime typography and focus treatment. Small screens wrap octets and metrics into two columns and stack comparison and answer fields. Presentation mode provides its own lesson selector. Reduced-motion preferences disable the new transitions and keyframe effects.
+
+
+## Unit directory
+The root opens a two-unit directory, with numbered covers and code-rendered OSI/binary illustrations. Unit 1 retains forest green; unit 2 uses slate blue (#234d60) with a pale blue teaching surface. The content navigation is unit-specific, with a persistent unit breadcrumb and return control. Directory cards stack on small screens; hash navigation preserves direct IP links and browser Back/Forward. This separates course-unit selection from within-unit learning activities.
