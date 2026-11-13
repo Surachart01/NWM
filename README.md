@@ -73,13 +73,48 @@ node --test tests/ipMath.test.mjs
 - ปุ่มตรารายวิชาและปุ่มหน่วยการเรียนทั้งหมดกลับหน้าเลือกหน่วยได้ รองรับ Back/Forward และ URL ตรงรายหัวข้อ
 - URL เดิม `/#ip-intro` ยังคงเปิดหน่วยที่ 2 ได้โดยตรง
 
-## บทปฏิบัติ Lab 1 ใน Packet Tracer (เพิ่มเติม)
+## หน่วยที่ 3 ปฏิบัติการ Packet Tracer
 
-หน่วยที่ 2 มีบทปฏิบัติต่อจาก "ภาพรวมหน้าจอและอุปกรณ์" อีก 4 หัวข้อ เปิดตรงได้ด้วย URL ต่อไปนี้
+หน้าแรกมี 3 หน่วย หน่วยที่ 2 เหลือเฉพาะ IP Address 6 หัวข้อ ส่วนบท Packet Tracer ทั้ง 26 หัวข้อย้ายมาเป็นหน่วยที่ 3 ใช้โทนสีน้ำตาลส้ม และเก็บความคืบหน้าแยกใน localStorage คีย์ `nvc-pt-progress`
 
-- `/#ip-packet-lab1` ต่อเครือข่ายแรกและทดสอบ ping
-- `/#ip-packet-simulation` ดูข้อมูลวิ่งด้วยโหมด Simulation พร้อมภาพจำลองลำดับ ARP และ ICMP ทีละขั้น
-- `/#ip-packet-networks` เครื่องต่างวงและการหาจุดเสีย
-- `/#ip-packet-switch-cli` ตั้งค่าพื้นฐาน Switch ด้วยคำสั่ง
+- `/#pt-packet-intro` รู้จัก Cisco Packet Tracer
+- `/#pt-packet-setup` ดาวน์โหลดและเตรียมใช้งาน
+- `/#pt-packet-overview` ภาพรวมหน้าจอและอุปกรณ์
+- `/#pt-packet-lab1` Lab 1 ต่อเครือข่ายแรกและทดสอบ ping
+- `/#pt-packet-simulation` ดูข้อมูลวิ่งด้วยโหมด Simulation พร้อมภาพจำลอง ARP และ ICMP ทีละขั้น
+- `/#pt-packet-networks` เครื่องต่างวงและการหาจุดเสีย
+- `/#pt-packet-switch-cli` พื้นฐานการใช้ CLI ของ Cisco
+- `/#pt-packet-switch-manage` ตั้งค่า Switch ให้พร้อมใช้งานจริง
+- `/#pt-packet-vlan-intro` รู้จัก VLAN ก่อนลงมือ (แนวคิด พร้อมอนิเมชันก่อนและหลังแบ่ง VLAN)
+- `/#pt-packet-vlan` Lab 2 VLAN และ Trunk
+- `/#pt-packet-intervlan` Lab 3 Inter-VLAN แบบ Router-on-a-stick
+- `/#pt-packet-routing` Lab 4 Static Route และ Default Route
+- `/#pt-packet-dhcp` Lab 5 DHCP Server และ DHCP Snooping
+- `/#pt-packet-stp` Lab 6 STP, PortFast, BPDU Guard, Loop Guard
+- `/#pt-packet-lacp` Lab 7 EtherChannel LACP
+- `/#pt-packet-nat` Lab 8 NAT Overload และ Port Forward
+- `/#pt-packet-acl` Lab 9 Standard / Extended ACL และ access-class
+- `/#pt-packet-midterm` ทบทวนก่อนสอบกลางภาค
+
+
+### บทแนวคิดก่อน Lab
+
+ก่อน Lab ทุกเรื่องมีบทแนวคิดที่อธิบายด้วยภาษาง่าย การเปรียบเทียบ ตาราง และอนิเมชัน ส่วนบท Lab เน้นขั้นตอนลงมือทำและหน้าจอ CLI จำลอง
+
+- `/#pt-packet-devices-intro` รู้จักอุปกรณ์เครือข่ายในองค์กร (อนิเมชัน access)
+- `/#pt-packet-vlan-intro` รู้จัก VLAN ก่อนลงมือ (vlanConcept)
+- `/#pt-packet-intervlan-intro` ข้าม VLAN ต้องผ่าน Gateway (gateway)
+- `/#pt-packet-routing-intro` Router ส่งข้อมูลไปวงอื่นได้อย่างไร (routing)
+- `/#pt-packet-dhcp-intro` DHCP แจก IP อัตโนมัติ (dhcp)
+- `/#pt-packet-stp-intro` STP กันวงในเครือข่าย (stp)
+- `/#pt-packet-lacp-intro` EtherChannel รวมหลายสายเป็นหนึ่ง (lacp)
+- `/#pt-packet-nat-intro` NAT และ Firewall (nat)
+- `/#pt-packet-acl-intro` ACL กำหนดสิทธิ์การเข้าถึง (acl)
+
+หน้าจอ CLI จำลองแบบกดทีละขั้นอยู่ใน `app/cliScripts.js` และแสดงผลด้วย `CliDemo` ใน `app/IPCourse.jsx`
+
+อนิเมชันแผนผังเครือข่าย (ข้อมูลวิ่งระหว่างอุปกรณ์ ติดแท็ก VLAN ค้นตาราง Routing และ DORA) อยู่ใน `app/animSpecs.js` แสดงผลด้วย `app/TopoAnim.jsx` บทเรียนเรียกใช้ผ่านฟิลด์ `anim` ใน `app/ipLessons.js` มี 12 ชุด: access, gateway, modes, vlanConcept, vlan, intervlan, routing, dhcp, stp, lacp, nat, acl
+
+ลิงก์เดิมแบบ `/#ip-packet-...` ยังเปิดได้ และจะเปลี่ยนเป็น `/#pt-packet-...` ให้อัตโนมัติ เนื้อหาทุกบทยังอยู่ใน `app/ipLessons.js` โดยแยกด้วย export `ipLessons` และ `ptLessons`
 
 คำศัพท์ใน Tooltip ไม่จับคำที่ตามด้วยตัวเลข เช่น PC0 จะไม่ถูกแยกเป็น PC
