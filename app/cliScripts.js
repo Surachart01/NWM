@@ -5,12 +5,20 @@ const U='User EXEC  ( > )',P='Privileged EXEC  ( # )',G='Global Configuration  (
 export const cliScripts={
 cliBasics:{title:'เดินผ่านโหมดของ CLI ทีละคำสั่ง',device:'Switch0 · แท็บ CLI',steps:[
 {p:'Switch>',c:'',m:U,n:'หลังกด Enter จะเห็น Switch> นี่คือโหมด User EXEC ใช้ดูข้อมูลได้เล็กน้อย ยังแก้ไขค่าอะไรไม่ได้ เปรียบเหมือนยืนอยู่หน้าเคาน์เตอร์'},
+{p:'Switch>',c:'show version',o:'Cisco IOS Software, C2960 Software ...\n...\ncisco WS-C2960-24TT-L ...',m:U,n:'โหมดนี้ดูข้อมูลพื้นฐานได้ เช่น รุ่นของ Switch และเวอร์ชันของระบบปฏิบัติการ IOS'},
+{p:'Switch>',c:'show running-config',o:'% Invalid input detected at \'^\' marker.',m:U,n:'ทดลองให้เห็นว่าโหมดนี้ไม่มีสิทธิ์ดูค่าที่ตั้งไว้ทั้งหมด ผู้ที่อยู่เพียงโหมดนี้จึงไม่เห็นรหัสผ่านและค่าสำคัญ'},
 {p:'Switch>',c:'enable',m:P,n:'enable พาเข้าโหมด Privileged EXEC เครื่องหมายเปลี่ยนจาก > เป็น # โหมดนี้ดูค่าได้ทั้งหมดและสั่งบันทึกค่าได้ เปรียบเหมือนเข้าห้องผู้ดูแล'},
+{p:'Switch#',c:'show running-config',o:'Building configuration...\n!\nhostname Switch\n!\ninterface FastEthernet0/1\n!\ninterface FastEthernet0/2\n --More--',m:P,n:'คำสั่งเดียวกับที่ทำไม่ได้ในโหมด > ตอนนี้ทำได้แล้ว แสดงค่าทั้งหมดของเครื่อง เมื่อพบ --More-- ให้กด Space เพื่อดูต่อ หรือกด q เพื่อหยุด'},
 {p:'Switch#',c:'show ip interface brief',o:'Interface              IP-Address      OK? Method Status                Protocol\nFastEthernet0/1        unassigned      YES manual up                    up\nFastEthernet0/2        unassigned      YES manual up                    up\nFastEthernet0/3        unassigned      YES manual down                  down\n...',m:P,n:'คำสั่งที่ขึ้นต้นด้วย show ใช้ดูสถานะ ไม่เปลี่ยนค่าใด ๆ คำสั่งนี้บอกว่าพอร์ตไหนมีสายต่อ (up) และพอร์ตไหนว่าง (down)'},
+{p:'Switch#',c:'hostname SW1',o:'% Invalid input detected at \'^\' marker.',m:P,n:'ทดลองให้เห็นว่าโหมด # ดูได้ทุกอย่าง แต่ยังแก้ไขค่าไม่ได้ การแก้ไขค่าต้องเข้าโหมด config ก่อน'},
 {p:'Switch#',c:'configure terminal',o:'Enter configuration commands, one per line.  End with CNTL/Z.',m:G,n:'configure terminal พาเข้าโหมดแก้ไขค่าของทั้งเครื่อง สังเกตคำว่า (config) ที่เพิ่มขึ้นมา เปรียบเหมือนเข้าห้องเครื่อง'},
-{p:'Switch(config)#',c:'hostname SW1',m:G,n:'ตั้งชื่ออุปกรณ์ ชื่อหน้าเครื่องหมายเปลี่ยนเป็น SW1 ทันที ช่วยให้รู้ว่ากำลังพิมพ์คำสั่งอยู่บนเครื่องไหน'},
+{p:'Switch(config)#',c:'hostname SW1',m:G,n:'คำสั่งเดียวกับขั้นก่อน แต่ครั้งนี้ทำได้ ชื่อหน้าเครื่องหมายเปลี่ยนเป็น SW1 ทันที ช่วยให้รู้ว่ากำลังพิมพ์คำสั่งอยู่บนเครื่องไหน'},
+{p:'SW1(config)#',c:'show vlan brief',o:'% Invalid input detected at \'^\' marker.',m:G,n:'โหมด config ใช้แก้ไขค่า จึงพิมพ์คำสั่ง show โดยตรงไม่ได้'},
+{p:'SW1(config)#',c:'do show vlan brief',o:'VLAN Name                             Status    Ports\n---- -------------------------------- --------- ----------------------\n1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4\n...',m:G,n:'เติม do ข้างหน้าเพื่อใช้คำสั่ง show ได้โดยไม่ต้องออกจากโหมด config ผลแสดงว่าทุกพอร์ตอยู่ใน VLAN 1'},
 {p:'SW1(config)#',c:'interface fastEthernet0/1',m:I,n:'เลือกพอร์ตที่ต้องการตั้งค่า เครื่องหมายเปลี่ยนเป็น (config-if) แปลว่าคำสั่งถัดไปมีผลกับพอร์ต Fa0/1 เท่านั้น'},
-{p:'SW1(config-if)#',c:'description PC-A1',m:I,n:'ใส่คำอธิบายให้พอร์ต เพื่อให้คนที่มาดูแลต่อรู้ว่าพอร์ตนี้ต่อกับเครื่องใด'},
+{p:'SW1(config-if)#',c:'description PC0',m:I,n:'ใส่คำอธิบายให้พอร์ต เพื่อให้คนที่มาดูแลต่อรู้ว่าพอร์ตนี้ต่อกับเครื่องใด'},
+{p:'SW1(config-if)#',c:'shutdown',o:'%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down\n%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down',m:I,n:'ปิดพอร์ต Fa0/1 ไฟที่สายของ PC0 เปลี่ยนเป็นสีแดง ถ้าสั่ง ping จาก PC0 ในขณะนี้จะได้ Request timed out แสดงว่าผู้ดูแลควบคุมเครื่องปลายทางได้ทีละพอร์ต'},
+{p:'SW1(config-if)#',c:'no shutdown',o:'%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to up\n%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up',m:I,n:'เปิดพอร์ตกลับ คำว่า no หมายถึงยกเลิกคำสั่ง ไฟกลับเป็นสีเขียว และ PC0 ping ได้อีกครั้ง'},
 {p:'SW1(config-if)#',c:'exit',m:G,n:'exit ถอยกลับขึ้นไป 1 ขั้น จากโหมดพอร์ตกลับมาโหมดแก้ไขค่าของทั้งเครื่อง'},
 {p:'SW1(config)#',c:'end',m:P,n:'end กลับไปโหมด # ทันทีไม่ว่าอยู่ลึกแค่ไหน ใช้เมื่อตั้งค่าเสร็จแล้ว'},
 {p:'SW1#',c:'copy running-config startup-config',o:'Destination filename [startup-config]? \nBuilding configuration...\n[OK]',m:P,n:'บันทึกค่าที่ตั้งไว้ลงหน่วยความจำถาวร ถ้าไม่บันทึก เมื่อปิดเครื่องค่าจะหายทั้งหมด เมื่อถามชื่อไฟล์ให้กด Enter'}
