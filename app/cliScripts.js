@@ -23,26 +23,6 @@ cliBasics:{title:'เดินผ่านโหมดของ CLI ทีละ
 {p:'SW1(config)#',c:'end',m:P,n:'end กลับไปโหมด # ทันทีไม่ว่าอยู่ลึกแค่ไหน ใช้เมื่อตั้งค่าเสร็จแล้ว'},
 {p:'SW1#',c:'copy running-config startup-config',o:'Destination filename [startup-config]? \nBuilding configuration...\n[OK]',m:P,n:'บันทึกค่าที่ตั้งไว้ลงหน่วยความจำถาวร ถ้าไม่บันทึก เมื่อปิดเครื่องค่าจะหายทั้งหมด เมื่อถามชื่อไฟล์ให้กด Enter'}
 ]},
-cliManage:{title:'ตั้งค่า Switch ให้พร้อมใช้งานจริง',device:'Switch0 · แท็บ CLI',steps:[
-{p:'Switch>',c:'enable',m:P,n:'เข้าโหมด Privileged EXEC'},
-{p:'Switch#',c:'configure terminal',m:G,n:'เข้าโหมดแก้ไขค่า'},
-{p:'Switch(config)#',c:'hostname SW1',m:G,n:'ตั้งชื่ออุปกรณ์ตามแผนผัง'},
-{p:'SW1(config)#',c:'no ip domain-lookup',m:G,n:'ปิดการค้นหาชื่อ หากพิมพ์คำสั่งผิด Switch จะไม่ค้างรอค้นหาชื่อนาน ๆ ช่วยประหยัดเวลามาก'},
-{p:'SW1(config)#',c:'enable secret nvc@2569',m:G,n:'ตั้งรหัสผ่านสำหรับเข้าโหมด # ค่า secret ถูกเก็บแบบเข้ารหัส'},
-{p:'SW1(config)#',c:'line console 0',m:'Line Configuration  ( (config-line)# )',n:'เลือกช่อง Console ซึ่งเป็นช่องที่ต่อสายเข้ามาตั้งค่าโดยตรง'},
-{p:'SW1(config-line)#',c:'password nvc1234',m:'Line Configuration  ( (config-line)# )',n:'ตั้งรหัสผ่านสำหรับเข้า Console'},
-{p:'SW1(config-line)#',c:'login',m:'Line Configuration  ( (config-line)# )',n:'สั่งให้ถามรหัสผ่านทุกครั้งที่เข้า Console ถ้าลืมคำสั่งนี้ รหัสผ่านที่ตั้งไว้จะไม่ถูกใช้'},
-{p:'SW1(config-line)#',c:'exit',m:G,n:'กลับสู่โหมดแก้ไขค่าของทั้งเครื่อง'},
-{p:'SW1(config)#',c:'service password-encryption',m:G,n:'เข้ารหัสรหัสผ่านที่ยังเป็นข้อความธรรมดา เช่น รหัส Console เพื่อไม่ให้ใครเห็นเมื่อเปิดดูค่า'},
-{p:'SW1(config)#',c:'banner motd #Authorized access only#',m:G,n:'ข้อความเตือนที่แสดงเมื่อมีคนเข้าสู่อุปกรณ์'},
-{p:'SW1(config)#',c:'interface vlan 1',m:I,n:'เลือกอินเทอร์เฟซเสมือน VLAN 1 ใช้กำหนด IP ให้ Switch เพื่อให้ ping และจัดการผ่านเครือข่ายได้'},
-{p:'SW1(config-if)#',c:'ip address 192.168.1.2 255.255.255.0',m:I,n:'ตั้ง IP สำหรับจัดการ Switch ต้องอยู่วงเดียวกับเครื่องในเครือข่าย และไม่ซ้ำกับเครื่องอื่น'},
-{p:'SW1(config-if)#',c:'no shutdown',o:'%LINK-5-CHANGED: Interface Vlan1, changed state to up',m:I,n:'เปิดใช้งานอินเทอร์เฟซ คำว่า no หมายถึงยกเลิกคำสั่ง จึงเป็นการยกเลิกการปิด'},
-{p:'SW1(config-if)#',c:'exit',m:G,n:'กลับสู่โหมดแก้ไขค่าของทั้งเครื่อง'},
-{p:'SW1(config)#',c:'ip default-gateway 192.168.1.1',m:G,n:'บอกทางออกไปวงอื่นให้ Switch ใช้เมื่อมี Router ในเครือข่าย'},
-{p:'SW1(config)#',c:'end',m:P,n:'กลับสู่โหมด #'},
-{p:'SW1#',c:'write memory',o:'Building configuration...\n[OK]',m:P,n:'write memory เป็นคำสั่งบันทึกแบบสั้น ให้ผลเหมือน copy running-config startup-config'}
-]},
 cliVlan:{title:'สร้าง VLAN และกำหนดพอร์ตบน SW1',device:'SW1 · แท็บ CLI',steps:[
 {p:'SW1#',c:'configure terminal',m:G,n:'เข้าโหมดแก้ไขค่า'},
 {p:'SW1(config)#',c:'vlan 10',m:'VLAN Configuration  ( (config-vlan)# )',n:'สร้าง VLAN หมายเลข 10'},

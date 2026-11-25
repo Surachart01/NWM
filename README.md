@@ -84,7 +84,6 @@ node --test tests/ipMath.test.mjs
 - `/#pt-packet-simulation` ดูข้อมูลวิ่งด้วยโหมด Simulation พร้อมภาพจำลอง ARP และ ICMP ทีละขั้น
 - `/#pt-packet-networks` เครื่องต่างวงและการหาจุดเสีย
 - `/#pt-packet-switch-cli` พื้นฐานการใช้ CLI ของ Cisco
-- `/#pt-packet-switch-manage` ตั้งค่า Switch ให้พร้อมใช้งานจริง
 - `/#pt-packet-vlan-intro` รู้จัก VLAN ก่อนลงมือ (แนวคิด พร้อมอนิเมชันก่อนและหลังแบ่ง VLAN)
 - `/#pt-packet-vlan` Lab 2 VLAN และ Trunk
 - `/#pt-packet-intervlan` Lab 3 Inter-VLAN แบบ Router-on-a-stick
